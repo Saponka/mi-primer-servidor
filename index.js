@@ -67,7 +67,12 @@ app.get('/',((req, resp) =>{
  */
 
 
- // h1 en color azul
+ 
+//--------Servidor----------------------
+ const http = require("http");
+
+//---coneccion a Db---------trae la conexion de la ruta ./carpeta/archivo
+const { connection} = require('./DB/config');
 
  const express = require('express');
 
@@ -75,12 +80,112 @@ app.get('/',((req, resp) =>{
 
  const port = 8080;
 
- app.get ('/',( (req,resp)=>{
+ //------------------------------------------
+
+app.get ('/',( (req,resp)=>{
 
 resp.setHeader('Content-Type','text/html');
-resp.end('<h1 style="color: blue;" >Bienvenidos al Servidor Express</h1>')
+resp.end('<h1 style="color: blue;text-align: center;font-size: 40px;font-family:cursive;" >Bienvenidos al Servidor Express</h1>')
  }));
 
+ //---------------- ESCRIBIR VISITAS------------------------------
+ const fs = require('fs');
+
+  let n_visitas = "";
+  
+
+ app.get ('/visitas',( (req,resp)=>{
+
+    try {
+        fs.writeFileSync("visitas.txt", "El numero de visitas es: " + n_visitas  );
+        
+    } catch (error) {
+    
+         console.log("El error es " + error);
+    }
+     resp.setHeader('Content-Type','text/html');
+     resp.end(' <h2 style="color: blue;text-align: center;font-size: 40px;font-family:cursive;"> La cantidad de visitas es ' + n_visitas++ + '</h2>');
+     //resp.send(n_visitas);
+}));
+
+ //-----------------------------LEER VISITAS-------------------------------------------
+ 
+ try {
+    visitas = fs.readFileSync("/visitas.txt", "utf-8");
+    console.log(visitas);
+
+} catch (error) {
+    
+    console.log(error);
+};
+  
+
+//------------------------fecha y hora-------------------------------------------------------
+
+ const date = new Date ();
+
+app.get ('/fyh',( (req,resp)=>{
+
+    resp.setHeader('Content-Type','text/html');
+    resp.end( '<h2 style="color:red;text-align: center;font-size: 20px;font-family:cursive;"> La Fecha es ' + date + '</h2>'                                           )
+}));
+
+//-----------------------------------------------------------------------------
  app.listen(port,() =>{
     console.log(`Servidor corriendo en el puerto:${port}`);
 });
+
+app.on('error',(err)=>{
+    console.log(`Error en la ejecuccion del servidor ${error}`);
+});  
+
+//-------------------------------------------------------------------------------
+
+//-----------------MIDDLEWARE------------------
+
+app.use(express.json());
+
+//-----------------conexion a la base de datos: select * from alumnos-----------------------------
+
+app.get ('/alumnos',( (req,resp)=>{
+
+   resp.json(
+    {
+        "name": "Pablo",
+        "dni": "31152658"
+    }
+   )
+     resp.setHeader('Content-Type','text/html');
+     resp.send('Alumnos')
+ })); 
+
+ //---------------------------------post------enviar------------------------
+// post: envia datos de mi frontend a mi backend
+ //conexion a la base de datos: insert into alumnos
+
+app.post ('/alumnos',( (req,resp)=>{
+     //resp.setHeader('Content-Type','text/html');
+     resp.end( ' los datos han sido recibidos');
+     //console.log(req);
+     console.log(req.body);
+ }));
+
+ //---------------------------------delete------------------------------
+
+ app.delete ('/alumnos',( (req,resp)=>{
+    resp.setHeader('Content-Type','text/html');
+    resp.send( '<h2 "> Los datos han sido borrado</h2>')
+}));
+
+//---------------------------Put--update-------------------------------
+
+app.put ('/alumnos',( (req,resp)=>{
+
+    resp.setHeader('Content-Type','text/html');
+    resp.send( '<h2 "> Los datos han sido modificados</h2>')
+}));
+
+
+
+
+
