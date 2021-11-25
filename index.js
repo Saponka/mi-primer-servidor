@@ -16,7 +16,8 @@ const port = 8080;
 //4.creamos variable const con la palabra "server" y usamos el metodo "http.createServer ()" con 1 callback con 2 parametros:
 // 1 parametro del cb: req (peticion).
 // 2 parametro del cb: resp(respuesta).
-//  callback ()=>{} donde la respuesta(resp) sea: resp.statusCode = 200;  
+//  callback ()=>{} donde la respuesta(resp) sea: 
+//  resp.statusCode = 200;  //codigos de estado 200: ok
 // resp.setHeader('Content-Type','text/plain') //Content-Type:tipo de contenido y text/plain: texto plano.
 // resp.end('Texto a mostrar')
 
@@ -33,7 +34,7 @@ const server = http.createServer((req,resp)=>{
 //1 callback ()=>{}: con un "console.log()" (en templates literals(``)) + el port: ${port} 
 
 server.listen(port,hostname,()=>{
-    console.log(`Servidor corriendo en http://${hostname}/puerto:${port}`);
+    console.log(`Servidor corriendo en http: //${hostname}/puerto:${port}`);
 }) */
 
  
@@ -42,15 +43,15 @@ server.listen(port,hostname,()=>{
 
 // 1.crear variable const con la palabra "express",con la keyword (require) donde traigo todo el codigo "express" de node js
  
-  const express = require('express');
+/*   const express = require('express');
 
  const app = express();
 
- const port = 3000;
+ const port = 8080;
 
 
-app.get('/home',((req, resp) =>{
-    resp.send('Bienvenido a nuestra Aplicacion')
+app.get('/',((req, resp) =>{
+    resp.send('Bienvenido al servidor Express')
 }));
 
 
@@ -63,3 +64,23 @@ app.get('/home',((req, resp) =>{
 
      console.log(`Error en la ejecuccion del servidor ${error}`);
  }); 
+ */
+
+
+ // h1 en color azul
+
+ const express = require('express');
+
+ const app = express();
+
+ const port = 8080;
+
+ app.get ('/',( (req,resp)=>{
+
+resp.setHeader('Content-Type','text/html');
+resp.end('<h1 style="color: blue;" >Bienvenidos al Servidor Express</h1>')
+ }));
+
+ app.listen(port,() =>{
+    console.log(`Servidor corriendo en el puerto:${port}`);
+});
