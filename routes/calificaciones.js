@@ -15,7 +15,7 @@ const {
 router.get ('/calificaciones', calificaciones);
 router.get ( '/bienvenida',bienvenida);
 router.get ('/nomina', nomina );
-router.post ('/api/insertar', insertar);
+router.post ('/insertar', insertar);
 router.put ('/actualizar',actualizar);
 router.delete ('/borrar', borrar);
 
