@@ -3,24 +3,43 @@ const bienvenida = ( (req,resp)=>{
 });
 
 const nomina = ( (req,resp)=>{
-    resp.send( 'La nomina de todos los administrativos');
+    res.status(200).json({
+        status:'La nomina de todos los administrativos.',
+        body
+    });
+    //resp.send( 'La nomina de todos los administrativos');
 });
 
 const borrar = ( (req,resp)=>{
-    resp.setHeader('Content-Type','text/html');
-    resp.send( ' Los datos han sido borrado')
+
+    const body = req.body;
+    res.status(200).json({
+        status:'Los datos han sido borrado.',
+        body
+    });
+    //resp.send( ' Los datos han sido borrado')
 });
 
 const insertar = ( (req,resp)=>{
 
-    resp.end( ' los datos han sido recibidos');
+    const body = req.body;
+    res.status(200).json({
+        status:'los datos han sido recibidos.',
+        body
+    });
+    //resp.end( ' los datos han sido recibidos');
     //console.log(req);
     console.log(req.body);
    });
 
 const actualizar = ( (req,resp)=>{
-
-    resp.send( 'Los datos han sido modificados')
+    
+    const body = req.body;
+    res.status(200).json({
+        status:'Los datos han sido modificados.',
+        body
+    });
+    //resp.send( 'Los datos han sido modificados')
 });
 const administrativos = (( (req,resp)=>{
 

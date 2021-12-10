@@ -1,25 +1,50 @@
+//----get----------------
 const bienvenida = ( (req,resp)=>{
     resp.send( 'Bienvenutti');
 });
 
+const nomina = ( (req,res)=>{
+
+    res.status(200).json({
+        status:'La Nomina de todos los Docentes.',
+        body
+    });
+     //res.send( 'La nomina de todos los alumnos');
+ });
 
 
 const borrar = ( (req,resp)=>{
-
-    resp.send( 'Los datos han sido borrado')
+    const body = req.body;
+    res.status(200).json({
+        status:'los datos han sido Borrados.',
+        body
+    });
+    //resp.send( 'Los datos han sido borrado')
 });
 
 const insertar = ( (req,resp)=>{
- 
-    resp.end( ' los datos han sido recibidos');
+
+    const body = req.body;
+    res.status(200).json({
+        status:'los datos han sido Recibidos.',
+        body
+    });
+    //resp.end( ' los datos han sido recibidos');
     //console.log(req);
     console.log(req.body);
    });
 
 const actualizar = ( (req,resp)=>{
-    resp.send( 'Los datos han sido modificados')
+
+    const body = req.body;
+    res.status(200).json({
+        status:'los datos han sido Actualizados.',
+        body
+    });
+    //resp.send( 'Los datos han sido modificados')
 });
 const docentes = (( (req,resp)=>{
+    const body = req.body;
     resp.json(
      {
         "name": "fabiana",

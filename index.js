@@ -4,6 +4,9 @@
 //---coneccion a Db---------trae la conexion de la ruta ./carpeta/archivo
 //const { connection } = require('./DB/config');
 //----------------------------------------------------------------------
+/* const express = require('express');
+const router = express.Router(); */
+//------------------------------------------------------------------
  const express = require('express');
  const app = express();
  const port = 3000;

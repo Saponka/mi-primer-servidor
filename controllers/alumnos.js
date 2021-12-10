@@ -1,29 +1,54 @@
 
 //-----get---------------- creamos variable = a la funtion get,post,put,etc ((req,res)=>{})
+
 const bienvenida = ( (req,res)=>{
     console.log(req);
     res.send( 'Bienvenutti');
 });
+
 //----get----------------
 const nomina = ( (req,res)=>{
-    res.send( 'La nomina de todos los alumnos');
+
+   res.status(200).json({
+       status:'La Nomina de todos los Alumnos.',
+       body
+   });
+    //res.send( 'La nomina de todos los alumnos');
 });
 //----delete-------------
 const borrar = ( (req,res)=>{
-    //resp.setHeader('Content-Type','text/html');
-    res.send( '<h2> Los datos han sido borrado</h2>')
+
+    const body = req.body;
+    res.status(200).json({
+        status:'Los Datos han sido borrado.',
+        body
+    });
+    //res.send( '<h2> Los datos han sido borrado</h2>')
 });
+
 //--post----------
 const insertar = ( (req,res)=>{
-    res.end( ' los datos han sido recibidos');
+
+    const body = req.body;
+      res.status(200).json({
+        status:'Los Datos han sido Recibidos.',
+        body
+    });
+    //res.end( ' los datos han sido recibidos');
     //console.log(req);
     console.log(req.body);
    });
+
 //------put-------------
 const actualizar = ( (req,res)=>{
-
-    res.send( 'Los datos han sido modificados')
+    const body = req.body;
+    res.status(200).json({
+        status:'Los Datos han sido Recibidos.',
+        body
+    });  
+    //res.send( 'Los Datos han sido Actualizados')
 });
+
 //-----------------------
 const alumnos = (( (req,res)=>{
 

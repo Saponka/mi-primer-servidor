@@ -7,27 +7,46 @@ const bienvenida = ( (req,res)=>{
 });
 //----get----------------
 const nomina = ( (req,res)=>{
-    res.send( 'La nomina de todos los padres');
+    const body = req.body;
+    res.status(200).json({
+        status:'La Nomina de todos los Padres.',
+        body
+    });
+    //res.send( 'La nomina de todos los padres');
 });
 //----delete-------------
 const borrar = ( (req,res)=>{
-    //resp.setHeader('Content-Type','text/html');
-    res.send( '<h2> Los datos han sido borrado</h2>')
+    const body = req.body;
+    res.status(200).json({
+        status:'<h2 style="color: blue;"> Los datos han sido borrado</h2>.',
+        body
+    });
+    resp.setHeader('Content-Type','text/html');
+    //res.send( '<h2> Los datos han sido borrado</h2>')
 });
 //--post----------
 const insertar = ( (req,res)=>{
-    res.end( ' los datos han sido recibidos');
+    const body = req.body;
+    res.status(200).json({
+        status:'<h2 > Los datos han sido Recibidos</h2>.',
+        body
+    });
+   // res.end( ' los datos han sido recibidos');
     //console.log(req);
     console.log(req.body);
    });
 //------put-------------
 const actualizar = ( (req,res)=>{
-
-    res.send( 'Los datos han sido modificados')
+    const body = req.body;
+    res.status(200).json({
+        status:'<h2 > Los datos han sido Actualizados</h2>.',
+        body
+    });
+    //res.send( 'Los datos han sido modificados')
 });
 //-----------------------
 const padres = (( (req,res)=>{
-
+    const body = req.body;
     res.json(
      {
          "name": "Jorge",
